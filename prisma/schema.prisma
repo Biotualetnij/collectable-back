@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model Collectable {
+  id            Int @id @default(autoincrement())
+  amount        Float
+  currency      String
+  type          EnumType
+  queueNumber   Int
+}
+
+model UserCallectableAction{
+    id              Int @id @default(autoincrement())
+    userId          Int
+    type            EnumType
+    dateOfCollect   DateTime
+    queueNumber     Int
+}
+
+enum EnumType{
+    Monthly
+    Dayly
+    Weekly
+}
